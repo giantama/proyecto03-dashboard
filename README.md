@@ -28,3 +28,28 @@ El script:
 4. Convierte `Year` a entero y agrega `Release_Date` en formato ISO `YYYY-01-01`; descarta los 271 registros sin año.
 5. Convierte las ventas (`NA_Sales`, `EU_Sales`, `JP_Sales`, `Other_Sales`, `Global_Sales`) a números con 2 decimales.
 6. Escribe `{"videogames": [...]}` en `data/vgsales.json` y valida estructura, claves, tipos y cantidad de registros.
+
+## Sprint 2 – Componentes e interfaces React
+
+```bash
+npm install
+npm run dev      # servidor de desarrollo
+npm run build    # compilación de producción en dist/
+```
+
+Estructura (según el árbol de componentes de la Fase 3):
+
+```
+src/
+├── Dashboard.tsx            # raíz: estado de filtros (useState) y datos derivados
+├── components/
+│   ├── Header.tsx
+│   ├── FilterBar.tsx  ├── PlatformFilter.tsx  └── GenreFilter.tsx
+│   ├── KPISection.tsx └── KPICard.tsx
+│   ├── ChartsSection.tsx ├── SalesLineChart.tsx ├── GenreBarChart.tsx ├── PlatformDonutChart.tsx
+│   ├── ChartCard.tsx
+│   └── SalesTable.tsx
+├── data/sampleData.ts       # datos de ejemplo del sprint 2
+├── types/VideoGame.ts       # tipos TypeScript
+└── utils/metrics.ts         # cálculos de KPIs y agregaciones
+```
