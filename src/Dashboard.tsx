@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Box, Container, Grid, Stack } from '@mui/material';
+import { Alert, Box, Button, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
 import Header from './components/Header';
 import FilterBar from './components/FilterBar';
 import KPISection, { type KPI } from './components/KPISection';
 import ChartsSection from './components/ChartsSection';
 import SalesTable from './components/SalesTable';
-import { sampleGames } from './data/sampleData';
+import { useVideoGames } from './hooks/useVideoGames';
 import type { TableColumn } from './types/VideoGame';
 import {
   ALL, averageSales, filterGames, formatMillions, salesBy, salesByYear, topGame, topWithOthers, totalSales, uniqueValues,
@@ -25,7 +25,8 @@ export default function Dashboard() {
   const [selectedPlatform, setSelectedPlatform] = useState<string>(ALL);
   const [selectedGenre, setSelectedGenre] = useState<string>(ALL);
 
-  const games = sampleGames; // Sprint 2: datos de ejemplo
+  // Sprint 3: registros recuperados desde Firebase Realtime Database
+  const { games, loading, error, retry } = useVideoGames();
   const platforms = useMemo(() => uniqueValues(games, 'Platform'), [games]);
   const genres = useMemo(() => uniqueValues(games, 'Genre'), [games]);
 
@@ -42,8 +43,20 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header title="Global Video Game Sales & Market Trends Dashboard" source="Sprint 2 · datos de ejemplo" />
+      <Header title="Global Video Game Sales & Market Trends Dashboard" source={loading ? "Conectando con Firebase…" : `Firebase · ${games.length.toLocaleString()} registros`} />
       <Container maxWidth="xl" sx={{ py: 3 }}>
+        {loading && (
+          <Stack spacing={2} sx={{ py: 10, alignItems: "center" }}>
+            <CircularProgress />
+            <Typography color="text.secondary">Cargando registros desde Firebase…</Typography>
+          </Stack>
+        )}
+        {error && (
+          <Alert severity="error" action={<Button color="inherit" onClick={retry}>Reintentar</Button>}>
+            No se pudieron cargar los datos: {error}
+          </Alert>
+        )}
+        {!loading && !error && (
         <Stack spacing={2}>
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, lg: 4 }}>
@@ -68,6 +81,7 @@ export default function Dashboard() {
           />
           <SalesTable rows={filtered} columns={columns} />
         </Stack>
+        )}
       </Container>
     </Box>
   );

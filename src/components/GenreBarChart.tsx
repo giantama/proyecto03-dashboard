@@ -17,7 +17,7 @@ export default function GenreBarChart({ data }: GenreBarChartProps) {
         series={[{ data: data.map((d) => d.value), label: 'Ventas (M)', color: '#2563eb', valueFormatter: (v) => `${v?.toFixed(2)}M` }]}
         hideLegend
         borderRadius={4}
-        margin={{ right: 10 }}
+        margin={{ right: 28 }}
       />
     </ChartCard>
   );

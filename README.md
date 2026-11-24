@@ -53,3 +53,16 @@ src/
 ├── types/VideoGame.ts       # tipos TypeScript
 └── utils/metrics.ts         # cálculos de KPIs y agregaciones
 ```
+
+## Sprint 3 – Conexión de React con Firebase
+
+- **Proyecto Firebase:** `proyecto03-vgsales` · Realtime Database `https://proyecto03-vgsales-default-rtdb.firebaseio.com` (us-central1).
+- **Datos:** el arreglo `videogames` de `data/vgsales.json` (16 327 registros) se importó en el nodo `/videogames`.
+- **Reglas** (`database.rules.json`): lectura pública solo de `/videogames`, escritura deshabilitada.
+
+| Archivo | Responsabilidad |
+|---|---|
+| `src/firebase/config.ts` | Inicializa la app de Firebase y exporta la instancia `db` (módulo centralizado). |
+| `src/services/videogamesService.ts` | `fetchVideoGames()`: consulta asíncrona `get(ref(db, 'videogames'))` y normaliza el resultado. |
+| `src/hooks/useVideoGames.ts` | Hook con `useEffect` (consulta al montar) y `useState` (`games`, `loading`, `error`). |
+| `src/Dashboard.tsx` | Usa el hook, muestra carga/error y reemplaza los datos de ejemplo por los de Firebase. |

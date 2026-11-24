@@ -15,7 +15,7 @@ export default function SalesLineChart({ data }: SalesLineChartProps) {
         xAxis={[{ data: data.map((d) => d.year), scaleType: 'point', valueFormatter: (v: number) => String(v) }]}
         series={[{ data: data.map((d) => d.sales), label: 'Ventas (M)', color: '#2563eb', showMark: false, area: true, curve: 'linear' }]}
         hideLegend
-        margin={{ left: 0, right: 10 }}
+        margin={{ left: 0, right: 24 }}
         sx={{ '& .MuiAreaElement-root': { fillOpacity: 0.12 } }}
       />
     </ChartCard>

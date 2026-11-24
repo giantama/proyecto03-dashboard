@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "videogames": {
+      ".read": true,
+      ".write": false,
+      ".indexOn": ["Year", "Platform", "Genre"]
+    }
+  }
+}
