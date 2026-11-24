@@ -54,3 +54,16 @@ export function formatMillions(value: number, currency = true): string {
   const prefix = currency ? '$' : '';
   return value >= 1000 ? `${prefix}${(value / 1000).toFixed(2)}B` : `${prefix}${value.toFixed(2)}M`;
 }
+
+/** Participación porcentual de cada región en las ventas, de mayor a menor. */
+export function regionShare(games: VideoGame[]): CategorySales[] {
+  const sum = (k: 'NA_Sales' | 'EU_Sales' | 'JP_Sales' | 'Other_Sales') => games.reduce((s, g) => s + g[k], 0);
+  const parts = [
+    { label: 'Norteamérica', value: sum('NA_Sales') },
+    { label: 'Europa', value: sum('EU_Sales') },
+    { label: 'Japón', value: sum('JP_Sales') },
+    { label: 'Otras', value: sum('Other_Sales') },
+  ];
+  const total = parts.reduce((s, p) => s + p.value, 0);
+  return parts.map((p) => ({ label: p.label, value: total ? (p.value / total) * 100 : 0 })).sort((a, b) => b.value - a.value);
+}

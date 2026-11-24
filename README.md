@@ -66,3 +66,17 @@ src/
 | `src/services/videogamesService.ts` | `fetchVideoGames()`: consulta asíncrona `get(ref(db, 'videogames'))` y normaliza el resultado. |
 | `src/hooks/useVideoGames.ts` | Hook con `useEffect` (consulta al montar) y `useState` (`games`, `loading`, `error`). |
 | `src/Dashboard.tsx` | Usa el hook, muestra carga/error y reemplaza los datos de ejemplo por los de Firebase. |
+
+## Dashboard final
+
+**Sitio publicado:** https://giantama.github.io/proyecto03-dashboard/
+
+Funcionalidades:
+- Filtros por **plataforma** y **género**, **búsqueda** por nombre de juego o editora y botón **Limpiar**.
+- KPIs calculados sobre los datos filtrados: ventas totales, promedio por juego (con región líder) y juego más vendido.
+- Gráficos (MUI X Charts): evolución anual (líneas), ventas por género (barras) y cuota por plataforma (anillo).
+- Tabla de detalle con **orden por columna**, **paginación** y scroll horizontal en móvil.
+- Estados de **carga** y **error** (con reintento) al consultar Firebase.
+
+Despliegue: el workflow `.github/workflows/deploy.yml` compila el proyecto y publica `dist/` en la rama `gh-pages`
+en cada push a `main` (también se puede publicar manualmente con `npm run deploy`).
