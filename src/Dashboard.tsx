@@ -102,7 +102,7 @@ export default function Dashboard() {
             />
             <SalesTable rows={filtered} columns={columns} />
             <Typography variant="caption" color="text.secondary" align="center">
-              Fuente: Video Game Sales (Kaggle) · Ventas en millones · ESPOL – Desarrollo de Aplicaciones Web y Móviles · Gianluigi Tamayo y Roy García
+              Fuente: Video Game Sales (Kaggle) · Ventas en millones · ESPOL – Desarrollo de Aplicaciones Web y Móviles · Gianluigi Tamayo Prado
             </Typography>
           </Stack>
         )}

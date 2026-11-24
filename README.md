@@ -1,7 +1,7 @@
 # Proyecto 03 – Dashboard Interactivo: Global Video Game Sales
 
 **ESPOL · FIEC · Desarrollo de Aplicaciones Web y Móviles (SOFG1006)**
-Integrantes: Gianluigi Tamayo – Roy García
+Autor: Gianluigi Tamayo Prado
 
 Dashboard interactivo construido con **React + TypeScript (Vite)**, **Material UI** y **Firebase Realtime Database**
 sobre el dataset [Video Game Sales (Kaggle)](https://www.kaggle.com/datasets/gregorut/videogamesales).
